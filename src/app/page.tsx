@@ -100,8 +100,8 @@ export default function Home() {
       };
 
   return (
-    <main className="flex-1 flex flex-col items-center justify-center p-4 gap-8">
-      <div className="text-center space-y-2">
+    <main className="flex-1 flex flex-col items-center justify-center p-4 gap-6">
+      <div className="text-center space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">
           Claude Buddy Showcase
         </h1>
@@ -113,8 +113,8 @@ export default function Home() {
         </p>
       </div>
 
-      <Card className="w-full max-w-md">
-        <CardContent className="pt-6 space-y-5">
+      <Card className="w-full max-w-md py-6">
+        <CardContent className="space-y-4">
           {/* UUID 입력 (접었다 펼침) */}
           <div className="space-y-2">
             <button
