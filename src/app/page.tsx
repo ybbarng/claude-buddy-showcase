@@ -127,7 +127,7 @@ export default function Home() {
               >
                 ▶
               </span>
-              내 버디 조회 (Account UUID 입력)
+              내 버디 조회 (~/.claude.json의 oauthAccount.accountUuid 입력)
             </button>
             {uuidOpen && (
               <form
