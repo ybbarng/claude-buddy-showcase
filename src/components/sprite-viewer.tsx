@@ -17,25 +17,22 @@ interface SpriteViewerProps {
 function ShinyLine({
   line,
   glimmerIndex,
-  baseColor,
   shimmerColor,
 }: {
   line: string;
   glimmerIndex: number;
-  baseColor: string;
   shimmerColor: string;
 }) {
   return (
     <>
       {[...line].map((char, charIdx) => {
         const shouldShimmer = Math.abs(charIdx - glimmerIndex) <= 1;
-        return (
-          <span
-            key={charIdx}
-            className={shouldShimmer ? shimmerColor : baseColor}
-          >
+        return shouldShimmer ? (
+          <span key={charIdx} className={shimmerColor}>
             {char}
           </span>
+        ) : (
+          char
         );
       })}
     </>
@@ -65,18 +62,17 @@ export function SpriteViewer({
 
   return (
     <div className="flex items-center justify-center">
-      <pre className="text-lg leading-snug select-none font-sprite">
+      <pre className={`text-lg leading-snug select-none font-sprite ${baseColor}`}>
         {lines.map((line, lineIdx) => (
           <span key={lineIdx}>
             {shiny ? (
               <ShinyLine
                 line={line}
                 glimmerIndex={glimmerIndex}
-                baseColor={baseColor}
                 shimmerColor={shimmerColor}
               />
             ) : (
-              <span className={baseColor}>{line}</span>
+              line
             )}
             {lineIdx < lines.length - 1 && "\n"}
           </span>
