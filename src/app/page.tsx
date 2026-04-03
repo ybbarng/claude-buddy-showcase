@@ -126,49 +126,53 @@ export default function Home() {
               </span>
               내 버디 조회 (~/.claude.json의 oauthAccount.accountUuid 입력)
             </button>
-            {uuidOpen && (
-              <>
-                <p className="text-xs text-muted-foreground">
-                  입력값은 서버로 전송되지 않습니다.
-                </p>
-                <form
-                  onSubmit={handleUuidSubmit}
-                  className="flex gap-2 items-center"
-                >
-                  <Input
-                    type="text"
-                    placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-                    value={uuid}
-                    onChange={(e) => setUuid(e.target.value)}
-                    className="flex-1 font-mono text-sm"
-                  />
-                  <Button type="submit" size="sm">
-                    조회
-                  </Button>
-                  {locked && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={handleClear}
-                    >
-                      해제
+            <div
+              className={`grid transition-[grid-template-rows] duration-200 ease-out ${uuidOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+            >
+              <div className="overflow-hidden">
+                <div className="space-y-2 pt-2">
+                  <p className="text-xs text-muted-foreground">
+                    입력값은 서버로 전송되지 않습니다.
+                  </p>
+                  <form
+                    onSubmit={handleUuidSubmit}
+                    className="flex gap-2 items-center"
+                  >
+                    <Input
+                      type="text"
+                      placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                      value={uuid}
+                      onChange={(e) => setUuid(e.target.value)}
+                      className="flex-1 font-mono text-sm"
+                    />
+                    <Button type="submit" size="sm">
+                      조회
                     </Button>
-                  )}
-                </form>
-                <p className="text-xs min-h-4">
-                  {error ? (
-                    <span className="text-destructive">{error}</span>
-                  ) : locked ? (
-                    <span className="text-green-500">
-                      입력한 UUID를 기반으로 아래 값들을 설정했습니다.
-                    </span>
-                  ) : (
-                    "\u00A0"
-                  )}
-                </p>
-              </>
-            )}
+                    {locked && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={handleClear}
+                      >
+                        해제
+                      </Button>
+                    )}
+                  </form>
+                  <p className="text-xs min-h-4">
+                    {error ? (
+                      <span className="text-destructive">{error}</span>
+                    ) : locked ? (
+                      <span className="text-green-500">
+                        입력한 UUID를 기반으로 아래 값들을 설정했습니다.
+                      </span>
+                    ) : (
+                      "\u00A0"
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* 속성 설정 */}
