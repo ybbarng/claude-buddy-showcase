@@ -284,7 +284,7 @@ export default function Home() {
               disabled={locked}
               className="rounded"
             />
-            <Label htmlFor="shiny">반짝이(shiny)</Label>
+            <Label htmlFor="shiny">반짝이(shiny) - Shimmer 스타일로 추정하여 적용</Label>
           </div>
         </CardContent>
       </Card>
