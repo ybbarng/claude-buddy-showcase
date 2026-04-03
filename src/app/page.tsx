@@ -22,6 +22,7 @@ import {
   RARITY_FLOOR,
   RARITY_COLORS,
   SPECIES_LABELS,
+  EYE_LABELS,
   HAT_LABELS,
   RARITY_LABELS,
   type Species,
@@ -232,14 +233,12 @@ export default function Home() {
                 disabled={locked}
               >
                 <SelectTrigger>
-                  <SelectValue>
-                    <span className="font-mono text-lg">{eye}</span>
-                  </SelectValue>
+                  <SelectValue>{EYE_LABELS[eye]}</SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {EYES.map((e) => (
                     <SelectItem key={e} value={e}>
-                      <span className="font-mono text-lg">{e}</span>
+                      {EYE_LABELS[e]}
                     </SelectItem>
                   ))}
                 </SelectContent>

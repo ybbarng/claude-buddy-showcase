@@ -26,6 +26,15 @@ export type Species = (typeof SPECIES)[number];
 export const EYES = ["·", "✦", "×", "◉", "@", "°"] as const;
 export type Eye = (typeof EYES)[number];
 
+export const EYE_LABELS: Record<Eye, string> = {
+  "·": "작은눈(·)",
+  "✦": "반짝이는눈(✦)",
+  "×": "엑스눈(×)",
+  "◉": "큰눈(◉)",
+  "@": "소용돌이눈(@)",
+  "°": "동그라미눈(°)",
+};
+
 export const HATS = [
   "none",
   "crown",
