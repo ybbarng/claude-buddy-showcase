@@ -97,6 +97,14 @@ export const RARITY_COLORS: Record<Rarity, string> = {
   legendary: "text-yellow-400",
 };
 
+export const RARITY_SHIMMER_COLORS: Record<Rarity, string> = {
+  common: "text-gray-200",
+  uncommon: "text-green-200",
+  rare: "text-blue-200",
+  epic: "text-purple-200",
+  legendary: "text-yellow-200",
+};
+
 export const SPECIES_LABELS: Record<Species, string> = {
   duck: "오리(duck)",
   goose: "거위(goose)",
