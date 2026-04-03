@@ -130,40 +130,45 @@ export default function Home() {
               내 버디 조회 (~/.claude.json의 oauthAccount.accountUuid 입력)
             </button>
             {uuidOpen && (
-              <form
-                onSubmit={handleUuidSubmit}
-                className="flex gap-2 items-start"
-              >
-                <div className="flex-1 space-y-1">
+              <>
+                <form
+                  onSubmit={handleUuidSubmit}
+                  className="flex gap-2 items-center"
+                >
                   <Input
                     type="text"
                     placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                     value={uuid}
                     onChange={(e) => setUuid(e.target.value)}
-                    className="font-mono text-sm"
+                    className="flex-1 font-mono text-sm"
                   />
-                  <p className="text-xs text-destructive min-h-4">
-                    {error || "\u00A0"}
-                  </p>
-                </div>
-                <Button type="submit" size="sm">
-                  조회
-                </Button>
-                {locked && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={handleClear}
-                  >
-                    해제
+                  <Button type="submit" size="sm">
+                    조회
                   </Button>
-                )}
-              </form>
+                  {locked && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleClear}
+                    >
+                      해제
+                    </Button>
+                  )}
+                </form>
+                <p className="text-xs min-h-4">
+                  {error ? (
+                    <span className="text-destructive">{error}</span>
+                  ) : locked ? (
+                    <span className="text-green-500">
+                      입력한 UUID를 기반으로 아래 값들을 설정했습니다.
+                    </span>
+                  ) : (
+                    "\u00A0"
+                  )}
+                </p>
+              </>
             )}
-            <p className="text-xs text-green-500 min-h-4">
-              {locked ? "UUID로 조회된 결과입니다. 아래 설정은 읽기 전용입니다." : "\u00A0"}
-            </p>
           </div>
 
           {/* 속성 설정 */}
