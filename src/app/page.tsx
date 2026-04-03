@@ -161,11 +161,9 @@ export default function Home() {
                 )}
               </form>
             )}
-            {locked && (
-              <p className="text-xs text-green-500">
-                UUID로 조회된 결과입니다. 아래 설정은 읽기 전용입니다.
-              </p>
-            )}
+            <p className="text-xs text-green-500 min-h-4">
+              {locked ? "UUID로 조회된 결과입니다. 아래 설정은 읽기 전용입니다." : "\u00A0"}
+            </p>
           </div>
 
           {/* 속성 설정 */}
