@@ -37,7 +37,7 @@ export function SpriteViewer({
 
   return (
     <div className="flex items-center justify-center">
-      <pre className="text-lg leading-snug font-mono select-none">
+      <pre className="text-lg leading-snug select-none" style={{ fontFamily: "var(--font-jetbrains-mono), var(--font-fira-code), monospace" }}>
         {lines.map((line, lineIdx) => (
           <span key={lineIdx}>
             {shiny
