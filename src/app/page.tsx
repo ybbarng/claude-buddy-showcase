@@ -106,10 +106,7 @@ export default function Home() {
           Claude Buddy Showcase
         </h1>
         <p className="text-muted-foreground text-sm">
-          Claude Code 버디를 확인하거나 커스텀 미리보기를 할 수 있습니다.
-        </p>
-        <p className="text-muted-foreground text-xs">
-          모든 계산은 브라우저에서만 수행되며, 서버로 전송되지 않습니다.
+          Claude Code의 모든 버디를 확인해보세요!
         </p>
       </div>
 
@@ -131,6 +128,9 @@ export default function Home() {
             </button>
             {uuidOpen && (
               <>
+                <p className="text-xs text-muted-foreground">
+                  입력값은 서버로 전송되지 않습니다.
+                </p>
                 <form
                   onSubmit={handleUuidSubmit}
                   className="flex gap-2 items-center"
