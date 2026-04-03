@@ -6,8 +6,8 @@ import { StatBar } from "@/components/stat-bar";
 import {
   RARITY_STARS,
   RARITY_COLORS,
-  RARITY_LABELS,
-  SPECIES_LABELS,
+  RARITY_LABELS_KO,
+  SPECIES_LABELS_KO,
   STAT_NAMES,
 } from "@/lib/constants";
 import type { PetResult } from "@/lib/roll";
@@ -20,16 +20,8 @@ export function BuddyCard({ pet }: BuddyCardProps) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center pb-2">
-        <div className="flex items-center justify-center gap-2">
-          <span className={`text-lg ${RARITY_COLORS[pet.rarity]}`}>
-            {RARITY_STARS[pet.rarity]}
-          </span>
-          <span className={`text-xs tracking-wider ${RARITY_COLORS[pet.rarity]}`}>
-            {RARITY_LABELS[pet.rarity]}
-          </span>
-        </div>
-        <h2 className="text-2xl font-bold tracking-wide">
-          {SPECIES_LABELS[pet.species]}
+        <h2 className={`text-2xl font-bold tracking-wide ${RARITY_COLORS[pet.rarity]}`}>
+          {RARITY_STARS[pet.rarity]} {RARITY_LABELS_KO[pet.rarity]} {SPECIES_LABELS_KO[pet.species]}
         </h2>
       </CardHeader>
       <CardContent className="space-y-6">

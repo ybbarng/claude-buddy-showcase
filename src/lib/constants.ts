@@ -128,6 +128,35 @@ export const RARITY_LABELS: Record<Rarity, string> = {
   legendary: "전설(legendary)",
 };
 
+export const SPECIES_LABELS_KO: Record<Species, string> = {
+  duck: "오리",
+  goose: "거위",
+  blob: "슬라임",
+  cat: "고양이",
+  dragon: "드래곤",
+  octopus: "문어",
+  owl: "올빼미",
+  penguin: "펭귄",
+  turtle: "거북이",
+  snail: "달팽이",
+  ghost: "유령",
+  axolotl: "아홀로틀",
+  capybara: "카피바라",
+  cactus: "선인장",
+  robot: "로봇",
+  rabbit: "토끼",
+  mushroom: "버섯",
+  chonk: "뚱냥이",
+};
+
+export const RARITY_LABELS_KO: Record<Rarity, string> = {
+  common: "일반",
+  uncommon: "고급",
+  rare: "희귀",
+  epic: "영웅",
+  legendary: "전설",
+};
+
 export const STAT_LABELS: Record<StatName, string> = {
   DEBUGGING: "디버깅(DEBUGGING)",
   PATIENCE: "인내심(PATIENCE)",
