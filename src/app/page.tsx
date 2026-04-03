@@ -20,6 +20,7 @@ import {
   HATS,
   RARITIES,
   RARITY_FLOOR,
+  RARITY_COLORS,
   SPECIES_LABELS,
   HAT_LABELS,
   RARITY_LABELS,
@@ -205,12 +206,18 @@ export default function Home() {
                 disabled={locked}
               >
                 <SelectTrigger>
-                  <SelectValue>{RARITY_LABELS[rarity]}</SelectValue>
+                  <SelectValue>
+                    <span className={RARITY_COLORS[rarity]}>
+                      {RARITY_LABELS[rarity]}
+                    </span>
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {RARITIES.map((r) => (
                     <SelectItem key={r} value={r}>
-                      {RARITY_LABELS[r]}
+                      <span className={RARITY_COLORS[r]}>
+                        {RARITY_LABELS[r]}
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>

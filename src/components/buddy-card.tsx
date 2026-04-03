@@ -24,7 +24,7 @@ export function BuddyCard({ pet }: BuddyCardProps) {
           <span className={`text-lg ${RARITY_COLORS[pet.rarity]}`}>
             {RARITY_STARS[pet.rarity]}
           </span>
-          <span className="text-xs text-muted-foreground tracking-wider">
+          <span className={`text-xs tracking-wider ${RARITY_COLORS[pet.rarity]}`}>
             {RARITY_LABELS[pet.rarity]}
           </span>
         </div>
