@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Claude Buddy Showcase
 
-## Getting Started
+Claude Code의 버디(companion) 시스템을 시뮬레이션하는 웹사이트입니다.
 
-First, run the development server:
+## 기능
+
+- **내 버디 조회**: `~/.claude.json`의 `accountUuid`를 입력하면 실제 Claude Code에서 보이는 버디와 동일한 결과를 확인할 수 있습니다.
+- **커스텀 미리보기**: 종(species), 희귀도(rarity), 눈(eye), 모자(hat), 반짝이(shiny) 등을 자유롭게 조합하여 미리볼 수 있습니다.
+- **애니메이션**: Claude Code 터미널과 동일한 15스텝 idle 애니메이션을 재현합니다.
+
+모든 계산은 브라우저에서만 수행되며, 서버로 전송되지 않습니다.
+
+## 작동 원리
+
+Claude Code는 `hash(userId + salt)` → Mulberry32 PRNG → 트레이트 순차 롤링으로 버디를 결정합니다.
+
+- **해시 함수**: wyhash ([bun-wyhash](https://www.npmjs.com/package/bun-wyhash))
+- **PRNG**: Mulberry32
+- **Salt**: 바이너리에 하드코딩된 고정값
+
+자세한 내용은 [any-buddy HOW_IT_WORKS.md](https://github.com/cpaczek/any-buddy/blob/main/HOW_IT_WORKS.md)를 참고하세요.
+
+## 개발
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 기술 스택
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js, React, TypeScript, Tailwind CSS, shadcn/ui
