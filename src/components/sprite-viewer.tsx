@@ -6,6 +6,26 @@ import type { Species, Eye, Hat, Rarity } from "@/lib/constants";
 import { RARITY_COLORS, RARITY_SHIMMER_COLORS } from "@/lib/constants";
 import { useShimmerAnimation } from "@/hooks/use-shimmer-animation";
 
+function groupByStyle(
+  chars: string[],
+  glimmerIndex: number,
+  baseColor: string,
+  shimmerColor: string,
+) {
+  const groups: { text: string; className: string }[] = [];
+  for (let i = 0; i < chars.length; i++) {
+    const className =
+      Math.abs(i - glimmerIndex) <= 1 ? shimmerColor : baseColor;
+    const last = groups[groups.length - 1];
+    if (last && last.className === className) {
+      last.text += chars[i];
+    } else {
+      groups.push({ text: chars[i], className });
+    }
+  }
+  return groups;
+}
+
 interface SpriteViewerProps {
   species: Species;
   eye: Eye;
@@ -41,17 +61,13 @@ export function SpriteViewer({
         {lines.map((line, lineIdx) => (
           <span key={lineIdx}>
             {shiny
-              ? [...line].map((char, charIdx) => {
-                  const shouldShimmer = Math.abs(charIdx - glimmerIndex) <= 1;
-                  return (
-                    <span
-                      key={charIdx}
-                      className={shouldShimmer ? shimmerColor : baseColor}
-                    >
-                      {char}
+              ? groupByStyle([...line], glimmerIndex, baseColor, shimmerColor).map(
+                  (group, gi) => (
+                    <span key={gi} className={group.className}>
+                      {group.text}
                     </span>
-                  );
-                })
+                  ),
+                )
               : <span className={baseColor}>{line}</span>}
             {lineIdx < lines.length - 1 && "\n"}
           </span>
