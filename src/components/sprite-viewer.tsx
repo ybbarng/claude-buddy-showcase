@@ -6,32 +6,40 @@ import type { Species, Eye, Hat, Rarity } from "@/lib/constants";
 import { RARITY_COLORS, RARITY_SHIMMER_COLORS } from "@/lib/constants";
 import { useShimmerAnimation } from "@/hooks/use-shimmer-animation";
 
-function groupByStyle(
-  chars: string[],
-  glimmerIndex: number,
-  baseColor: string,
-  shimmerColor: string,
-) {
-  const groups: { text: string; className: string }[] = [];
-  for (let i = 0; i < chars.length; i++) {
-    const className =
-      Math.abs(i - glimmerIndex) <= 1 ? shimmerColor : baseColor;
-    const last = groups[groups.length - 1];
-    if (last && last.className === className) {
-      last.text += chars[i];
-    } else {
-      groups.push({ text: chars[i], className });
-    }
-  }
-  return groups;
-}
-
 interface SpriteViewerProps {
   species: Species;
   eye: Eye;
   hat: Hat;
   rarity: Rarity;
   shiny: boolean;
+}
+
+function ShinyLine({
+  line,
+  glimmerIndex,
+  baseColor,
+  shimmerColor,
+}: {
+  line: string;
+  glimmerIndex: number;
+  baseColor: string;
+  shimmerColor: string;
+}) {
+  return (
+    <>
+      {[...line].map((char, charIdx) => {
+        const shouldShimmer = Math.abs(charIdx - glimmerIndex) <= 1;
+        return (
+          <span
+            key={charIdx}
+            className={shouldShimmer ? shimmerColor : baseColor}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </>
+  );
 }
 
 export function SpriteViewer({
@@ -60,15 +68,16 @@ export function SpriteViewer({
       <pre className="text-lg leading-snug select-none font-sprite">
         {lines.map((line, lineIdx) => (
           <span key={lineIdx}>
-            {shiny
-              ? groupByStyle([...line], glimmerIndex, baseColor, shimmerColor).map(
-                  (group, gi) => (
-                    <span key={gi} className={group.className}>
-                      {group.text}
-                    </span>
-                  ),
-                )
-              : <span className={baseColor}>{line}</span>}
+            {shiny ? (
+              <ShinyLine
+                line={line}
+                glimmerIndex={glimmerIndex}
+                baseColor={baseColor}
+                shimmerColor={shimmerColor}
+              />
+            ) : (
+              <span className={baseColor}>{line}</span>
+            )}
             {lineIdx < lines.length - 1 && "\n"}
           </span>
         ))}
